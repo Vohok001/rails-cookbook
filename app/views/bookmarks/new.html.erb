@@ -1,2 +1,9 @@
-<h1>Bookmarks#new</h1>
-<p>Find me in app/views/bookmarks/new.html.erb</p>
+<h1>Add a new bookmark</h1>
+
+<%= simple_form_for [@category, @bookmark] do |f| %>
+  <%= f.association :recipe %>
+  <%= f.input :comment %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+<p><%= link_to "Back to Category", category_path(@category) %></p>
+<p><%= link_to "Back to Index", categories_path %></p>

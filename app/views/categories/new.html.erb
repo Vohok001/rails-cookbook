@@ -1,2 +1,7 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h1>Add a new Category</h1>
+
+<%= simple_form_for @category do |f| %>
+  <%= f.input :name %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+<p><%= link_to "Back to Index", categories_path %></p>

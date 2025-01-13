@@ -7,8 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-puts 'creating recipes'
+puts "cleaning db..."
+Bookmark.destroy_all
+Recipe.destroy_all #so don't duplicate everytime you run
+Category.destroy_all
+puts "creating recipes"
   recipe = Recipe.new(
     name: "Blueberry pancakes",
     description: "Light, fluffy and fruity, these pancakes are an American classic. Serve them stacked high with syrup and extra fruit",
@@ -41,4 +44,10 @@ puts 'creating recipes'
   )
   recipe.save
 
-puts 'finished!'
+  Recipe.create!(
+    name: "Supergreen salad",
+    description: "This super salad packs a crunch, with seeds, lots of veg and protein-filled chickpeas",
+    image_url: "https://www.wcrf.org/wp-content/uploads/2024/08/Super-green-salad-SQ.jpg",
+    rating: 3.5
+  )
+puts "finished! created #{Recipe.count} recipes!"
