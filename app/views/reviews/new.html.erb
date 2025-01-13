@@ -1,0 +1,10 @@
+<h1>Add a new Review</h1>
+
+<%= simple_form_for [@category, @review] do |f| %>
+  <%= f.association :category %>
+  <%= f.input :comment %>
+  <%= f.input :rating %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+<p><%= link_to "Back to Category", category_path(@category) %></p>
+<p><%= link_to "Back to Index", categories_path %></p>

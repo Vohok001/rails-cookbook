@@ -1,5 +1,6 @@
 <h1><%=@category.name %></h1>
 <p><%= link_to "Add a bookmark", new_category_bookmark_path(@category) %></p>
+<p><%= link_to "Add a review", new_category_review_path(@category) %></p>
 <ul>
   <% @category.bookmarks.each do |bookmark| %>
     <li><%= bookmark.recipe.name %>
@@ -7,6 +8,13 @@
      data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{bookmark.recipe.name} from your #{@category.name} list"}%> </li>
     <li class= "list-unstyled"><%= "#{bookmark.comment}"%></li>
 
+  <% end %>
+</ul>
+<h2>Reviews</h2>
+<ul class= "list-unstyled">
+  <% @category.reviews.each do |review| %>
+  <li><%= review.rating %></li>
+  <li ><%= review.comment %></li>
   <% end %>
 </ul>
 <p><%= link_to "Back to Index", categories_path %></p>
