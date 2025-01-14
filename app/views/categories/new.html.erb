@@ -1,7 +1,9 @@
-<h1>Add a new Category</h1>
 
-<%= simple_form_for @category do |f| %>
-  <%= f.input :name %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
-<p><%= link_to "Back to Index", categories_path %></p>
+ <div class="form-card">
+  <h1>Add a new Category</h1>
+
+  <%= simple_form_for @category do |f| %>
+    <%= f.input :name, label: "The category name..." %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>

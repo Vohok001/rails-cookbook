@@ -1,10 +1,17 @@
 <h1>Add a new Review</h1>
 
 <%= simple_form_for [@category, @review] do |f| %>
-  <%= f.association :category %>
-  <%= f.input :comment %>
-  <%= f.input :rating %>
-  <%= f.submit class: "btn btn-primary" %>
+    <%= f.input :comment, as: :text, label: "Add your comments here..." %>
+  <div class="star-rating">
+    <% 5.downto(1) do |i| %>
+      <%= f.radio_button :rating, i, id: "star#{i}" %>
+      <label for="star<%= i %>" title="<%= i %> stars">
+        &#9733;
+      </label>
+    <% end %>
+  </div>
+    <%= f.submit %>
 <% end %>
+
 <p><%= link_to "Back to Category", category_path(@category) %></p>
 <p><%= link_to "Back to Index", categories_path %></p>

@@ -8,3 +8,34 @@
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
+.form-card{
+  height: 300px;
+  width: 400px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  margin: 0 auto;
+}
+.star-rating {
+  direction: rtl; /* Stars fill from left to right */
+  font-size: 2rem;
+  unicode-bidi: bidi-override;
+  display: inline-flex;
+  cursor: pointer;
+}
+/* Hide the radio buttons */
+.star-rating input[type="radio"] {
+  display: none;
+}
+/* Style the stars */
+.star-rating label {
+  color: #ccc;
+  padding: 0 5px;
+  transition: color 0.2s;
+}
+/* Highlight selected stars */
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f5b301;
+}

@@ -1,8 +1,37 @@
-<h1>Categories</h1>
+<div class = "banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "banner.png" %>')">
+  <div>
+    <h1>Cookbook</h1>
+    <h3>Store all your favourite Recipes</h3>
+  </div>
+</div>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category) %></li>
-  <% end %>
-</ul>
-<p><%= link_to "Create a new Category", new_category_path %></p>
+<div class= "container">
+
+  <div class ="info-container" >
+    <h3>List of Categories</h3>
+    <p class="btn btn-warning mx-3"><%= link_to "+ New Category", new_category_path %></p>
+  </div>
+
+  <div class ="index-cards">
+
+    <% @categories.each do |category| %>
+
+      <div class= "card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "#{category.recipes.first.image_url}"%>')" >
+        <%= link_to category.name, category_path(category) %>
+        <span class="delete-link">
+          <%= link_to "Delete", category_path(category), method: :delete,
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{category.name} from your list"}%>
+        </span>
+      </div>
+
+
+
+    <% end %>
+  </div>
+</div>
+
+ <%# <%= link_to category_path(category) do %>
+        <%# <div class= "card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "#{category.recipes.first.image_url}"%>')" >
+          <%# <h2><%= category.name</h2> %>
+        <%# </div> %>
+      <%# <%end  %>

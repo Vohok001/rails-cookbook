@@ -9,8 +9,14 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.category = @category
     if @review.save
-      redirect_to category_path(@category)
+      redirect_to category_path(@category), notice: 'Review sucessfully created!'
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to category_path, status: :see_other
   end
 
   private
