@@ -2,6 +2,7 @@ class Category < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :recipes, through: :bookmarks
   has_many :reviews, dependent: :destroy
+  has_one_attached :photo
 
   validates :name, presence: true, uniqueness: true
 end

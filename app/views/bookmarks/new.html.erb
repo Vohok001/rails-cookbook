@@ -1,12 +1,12 @@
 
 
-<div class="form-card">
-  <h1>Add a new bookmark</h1>
+<div class="form-new mt-5">
+  <h1>Add a Recipe</h1>
 
   <%= simple_form_for [@category, @bookmark] do |f| %>
     <%= f.association :recipe %>
     <%= f.input :comment %>
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-warning" %>
   <% end %>
-  <p><%= link_to "Back to Category", category_path(@category) %></p>
+  <%# <p><%= link_to "Back to Category", category_path(@category)</p>  %>
 </div>

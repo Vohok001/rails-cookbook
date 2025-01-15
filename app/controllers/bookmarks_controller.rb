@@ -10,6 +10,8 @@ class BookmarksController < ApplicationController
     @bookmark.category = @category
     if @bookmark.save
       redirect_to category_path(@category)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

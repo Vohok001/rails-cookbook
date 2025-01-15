@@ -1,4 +1,4 @@
-<div class = "banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "banner.png" %>')">
+<div class = "banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @category.photo.key  %>')">
   <div>
     <h1><%=@category.name %></h1>
   </div>
@@ -27,7 +27,7 @@
 
       <div class="recipe-info">
         <h4><%= bookmark.recipe.name %></h4>
-        <p><%= bookmark.recipe.description.truncate(100) %></p>
+        <p><%= bookmark.recipe.description.truncate(200) %></p>
       </div>
 
       <div class="card-info">
@@ -46,25 +46,48 @@
   <% end %>
 </div>
 
-<div class="review-container">
-  <h2>Reviews</h2>
-  <ul class= "list-unstyled">
-    <% @category.reviews.each do |review| %>
-      <li><% (1..5).each do |star| %>
-        <% if review.rating >= star %>
-          <i class="fa fa-star filled-star"></i>
-        <% else %>
-          <i class="fa fa-star-o empty-star"></i>
-        <% end %>
+<div class="review-container mt-3">
+
+  <div class= "review-card">
+    <h3 class="mt-4">Reviews</h3>
+    <div class="review-info">
+      <% @category.reviews.each do |review| %>
+        <%= '⭐️' * review.rating %>
+        <p class= 'd-flex justify-content-bottom mt-2'><%= review.comment%></p>
       <% end %>
-      </li>
-      <li ><%= review.comment %>
-      <%= link_to " |Delete", review_path(review),
-      data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove your review from your #{@category.name} list"}%> </li>
+    </div>
+  </div>
+
+  <div class="form-new-review mt-5">
+    <h3>Add a new Review</h3>
+      <%= simple_form_for [@category, @review] do |f| %>
+      <%= f.input :comment, as: :text, label: "Comments" %>
+      <div class="star-rating">
+        <% 5.downto(1) do |i| %>
+          <%= f.radio_button :rating, i, id: "star#{i}" %>
+          <label for="star<%= i %>" title="<%= i %> stars">
+            &#9733;
+          </label>
+        <% end %>
+      </div>
+      <%= f.submit class: "btn btn-warning d-flex justify-content-bottom mt-2" %>
     <% end %>
-  </ul>
+  </div>
+
 </div>
 
-<div class="d-flex justify-content-end">
-  <p class="btn btn-primary mx-3" ><%= link_to "Add a review", new_category_review_path(@category) %></p>
-</div>
+<%# <div class=" d-flex justify-content-end">
+  <p class="btn btn-warning mx-3" ><%= link_to "Add a review", new_category_review_path(@category) %>
+<%# </div> %>
+
+<%# <%= review.comment %>
+        <%# <%= link_to " |Delete", review_path(review),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove your review from your #{@category.name} list"}%>
+      <%# <% end %>
+<%# <% (1..5).each do |star| %>
+        <%# <% if review.rating >= star %>
+          <%# <i class="fa fa-star filled-star"></i>
+        <% else %>
+          <%# <i class="fa fa-star-o empty-star"></i>
+        <% end %>
+      <%# <% end %>

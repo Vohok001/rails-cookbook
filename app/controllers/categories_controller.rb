@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @review = Review.new
   end
 
   def new
@@ -25,10 +26,10 @@ class CategoriesController < ApplicationController
     @category.destroy
     redirect_to categories_path, status: :see_other
   end
-  
+
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :photo)
   end
 end
