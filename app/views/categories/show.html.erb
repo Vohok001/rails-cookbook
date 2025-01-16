@@ -53,7 +53,7 @@
     <div class="review-info">
       <% @category.reviews.each do |review| %>
         <%= '⭐️' * review.rating %>
-        <p class= 'd-flex justify-content-bottom mt-2'><%= review.comment%></p>
+        <p class= 'd-flex justify-content-bottom mt-2 border-dark-grey border-bottom'><%= review.comment%></p>
       <% end %>
     </div>
   </div>
